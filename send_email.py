@@ -19,6 +19,8 @@ def send_email(subject, msg, to_email=EMAIL_ADDRESS):
         server.sendmail(to_email, EMAIL_ADDRESS, message)
         server.quit()
         print("Success: Email sent!")
+        return True
     except Exception as e:
         print(e)
         print("Email failed to send.")
+        return False

@@ -25,3 +25,16 @@ Send a post request to `http://server/email`, and put the message in form data w
 If you need this route to work, make sure you enter your email address and password in `.env`
 
 It's using gmail smtp server for by default, so you have to use a gmail as your from address. Change it in `send_email.py` if you wish to use some other server.
+
+## Dockerfile
+
+I made a docker image and it's on docker hub (support gmail only, build your own if you want).
+
+Also you may want to generate a app password for gmail. For security reasons, gmail may not let you use your general email.
+
+Here is how to use it
+
+```bash
+touch log.log
+docker run -d --restart unless-stopped -e EMAIL_ADDRESS=<gmail> -e EMAIL_PASSWORD=<password> -p 3000:3000 --name log-server -v $PWD/log.log:/root/simple-log-server/log.log huakunshen/simple-log-server:latest
+```

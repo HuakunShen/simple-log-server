@@ -17,8 +17,11 @@ def log():
 @app.route('/email', methods=['POST'])
 def email():
     if 'data' in request.form:
-        send_email("From Simple Log Server", request.form['data'])
-        return "emailed"
+        if send_email("From Simple Log Server", request.form['data']):
+            return "emailed"
+        else:
+            app.logger.error('ERROR: cannot send email')
+            return "no email"
     return "no data in request"
 
 
