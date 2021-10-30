@@ -36,5 +36,12 @@ Here is how to use it
 
 ```bash
 touch log.log
-docker run -d --restart unless-stopped -e EMAIL_ADDRESS=<gmail> -e EMAIL_PASSWORD=<password> -p 3000:3000 --name log-server -v $PWD/log.log:/root/simple-log-server/log.log huakunshen/simple-log-server:latest
+docker run -d \
+    --restart unless-stopped \
+    -e EMAIL_ADDRESS=<gmail> \
+    -e EMAIL_PASSWORD=<password> \
+    -p 3000:3000 \
+    --name log-server \
+    -v $PWD/log.log:/root/simple-log-server/log.log \
+    huakunshen/simple-log-server:latest
 ```
