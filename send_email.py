@@ -16,7 +16,7 @@ def send_email(subject, msg, to_email=EMAIL_ADDRESS):
         server.starttls()
         server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
         message = 'Subject: {}\n\n{}'.format(subject, msg)
-        server.sendmail(to_email, EMAIL_ADDRESS, message)
+        server.sendmail(EMAIL_ADDRESS, to_email, message + " 1")
         server.quit()
         print("Success: Email sent!")
         return True
