@@ -6,17 +6,20 @@ from dotenv import load_dotenv
 load_dotenv()
 EMAIL_ADDRESS = os.environ.get("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
-mail_server_address = 'smtp.gmail.com:587'
+MAIL_SERVER = os.environ.get("MAIL_SERVER")
+RECEIVER_ADDRESS = os.environ.get('RECEIVER_ADDRESS')
+MAIL_SERVER_ADDR = MAIL_SERVER.split(':')[0]
+MAIL_SERVER_PORT = int(MAIL_SERVER.split(':')[1])
 
 
-def send_email(subject, msg, to_email=EMAIL_ADDRESS):
+def send_email(subject, msg, to_email=RECEIVER_ADDRESS):
     try:
-        server = smtplib.SMTP(mail_server_address)
+        server = smtplib.SMTP(MAIL_SERVER_ADDR, MAIL_SERVER_PORT)
         server.ehlo()
         server.starttls()
         server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-        message = 'Subject: {}\n\n{}'.format(subject, msg)
-        server.sendmail(EMAIL_ADDRESS, to_email, message + " 1")
+        message = '{}\n\n{}'.format(subject, msg)
+        server.sendmail(EMAIL_ADDRESS, to_email, message)
         server.quit()
         print("Success: Email sent!")
         return True
