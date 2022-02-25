@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request
 import logging
 from send_email import send_email
@@ -5,6 +6,7 @@ from send_email import send_email
 logging.basicConfig(filename='log.log', level=logging.CRITICAL, format="%(asctime)s | %(levelname)s | %(message)s")
 app = Flask(__name__)
 
+RECEIVER_ADDRESS = os.environ.get('RECEIVER_ADDRESS')
 
 @app.route('/', methods=['POST'])
 def log():
@@ -17,7 +19,9 @@ def log():
 @app.route('/email', methods=['POST'])
 def email():
     if 'data' in request.form:
-        if send_email("From Simple Log Server", request.form['data']):
+        print(request.form['data'])
+        if send_email("Subject: Simple Log Server", request.form['data'], RECEIVER_ADDRESS):
+            print(request.form['data'])
             return "emailed"
         else:
             app.logger.error('ERROR: cannot send email')
