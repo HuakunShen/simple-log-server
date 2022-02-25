@@ -38,8 +38,7 @@ Here is how to use it
 touch log.log
 docker run -d \
     --restart unless-stopped \
-    -e EMAIL_ADDRESS=<gmail> \
-    -e EMAIL_PASSWORD=<password> \
+    --env-file=.env \
     -p 3000:3000 \
     --name log-server \
     -v $PWD/log.log:/root/simple-log-server/log.log \
