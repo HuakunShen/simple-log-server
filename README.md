@@ -44,3 +44,8 @@ docker run -d \
     -v $PWD/log.log:/root/simple-log-server/log.log \
     huakunshen/simple-log-server:latest
 ```
+
+
+docker buildx build --push --platform linux/arm64/v8,linux/arm/v7,linux/amd64 \
+  -t HuakunShen/simple-log-server:v0.3.4 \
+  -t HuakunShen/simple-log-server:latest .
