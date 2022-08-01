@@ -1,5 +1,8 @@
 # Simple Log / Email Server
 
+> This project is archived, a new, more powerful version is in [Notify Me](https://github.com/HuakunShen/Notify-Me/).
+> [Notify Me](https://github.com/HuakunShen/Notify-Me/) has a web UI and supports email, telegram, notion and potentially more integrations in the future.
+
 ## Description
 
 A very simple flask server for logging request message to log (to disk) and sending email for the purpose of penetration testing.
